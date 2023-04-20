@@ -14,8 +14,11 @@ func Home(c *fiber.Ctx) error {
 func ListFacts(c *fiber.Ctx) error {
 	facts := []models.Fact{}
 	database.DB.Db.Find(&facts)
-
-	return c.Status(200).JSON(facts)
+	
+	return c.Render("index", fiber.Map{
+		"Title": "sdGuille Trivia Time",
+		"subtitle": "Facts for funtimes	with friends!",
+	})
 }
 
 func CreateFact(c *fiber.Ctx) error {
